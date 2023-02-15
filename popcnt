@@ -2,9 +2,9 @@
 #
 # popcnt - count the population of chars on stdin
 #
-# @(#) $Revision: 1.1 $
-# @(#) $Id: popcnt,v 1.1 2003/01/08 15:16:24 chongo Exp chongo $
-# @(#) $Source: /usr/local/src/cmd/popcnt/RCS/popcnt,v $
+# @(#) $Revision: 1.2 $
+# @(#) $Id: popcnt,v 1.2 2004/05/21 15:30:25 chongo Exp $
+# @(#) $Source: /usr/local/src/bin/popcnt/RCS/popcnt,v $
 #
 # Copyright (c) 2003 by Landon Curt Noll.  All Rights Reserved.
 #
