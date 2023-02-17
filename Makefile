@@ -1,10 +1,6 @@
-#!/usr/bin/make
+#!/usr/bin/env make
 #
 # popcnt - count the population of chars on stdin
-#
-# @(#) $Revision: 1.1 $
-# @(#) $Id: Makefile,v 1.1 2003/01/08 15:16:24 chongo Exp $
-# @(#) $Source: /usr/local/src/bin/popcnt/RCS/Makefile,v $
 #
 # Copyright (c) 2003 by Landon Curt Noll.  All Rights Reserved.
 #
@@ -27,11 +23,12 @@
 #
 # Share and enjoy!
 
-SHELL=/bin/sh
-BINMODE=0555
-DESTBIN=/usr/local/bin
-DESTLIB=/usr/local/lib
-INSTALL=install
+SHELL= bash
+BINMODE= 0555
+DESTBIN= /usr/local/bin
+DESTLIB=/ usr/local/lib
+INSTALL= install
+RM= rm
 
 all: popcnt
 
@@ -41,4 +38,3 @@ install: all
 clean:
 
 clobber: clean
-	-rm -f add
