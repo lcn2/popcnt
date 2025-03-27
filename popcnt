@@ -1,8 +1,8 @@
-#!/usr/bin/env perl -w
+#!/usr/bin/env perl
 #
 # popcnt - count the population of chars on stdin
 #
-# Copyright (c) 2003,2023 by Landon Curt Noll.  All Rights Reserved.
+# Copyright (c) 2003-2004,2023,2025 by Landon Curt Noll.  All Rights Reserved.
 #
 # Permission to use, copy, modify, and distribute this software and
 # its documentation for any purpose and without fee is hereby granted,
@@ -22,19 +22,70 @@
 # OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 # PERFORMANCE OF THIS SOFTWARE.
 #
-# chongo (Landon Curt Noll, http://www.isthe.com/chongo/index.html) /\oo/\
+# chongo (Landon Curt Noll) /\oo/\
 #
-# Share and enjoy! :-)
+# http://www.isthe.com/chongo/index.html
+# https://github.com/lcn2
+
 
 # requirements
 #
 use strict;
 use bytes;
 use POSIX;
+use vars qw($opt_h $opt_v $opt_V);
+use Getopt::Long qw(:config no_ignore_case);
+use File::Basename;
 
+# version
+#
+my $VERSION = "1.0.5 2025-03-26";
+
+# my vars
+#
+my $NAME = basename($0);
 my $line;	# most recent input line
 my %tally;	# character tally count
 my $char;	# char to tally
+
+
+# usage and help
+#
+my $usage = "$NAME [-h] [-v lvl] [-V]";
+my $help = qq{$usage
+
+    -h              print help and exit
+    -v lvl          verbose / debug level
+    -V              print version and exit
+
+$NAME version: $VERSION};
+my %optctl = (
+    "h" => \$opt_h,
+    "v=i" => \$opt_v,
+    "V" => \$opt_V
+);
+
+
+# set the defaults
+#
+$opt_h = 0;
+$opt_v = 0;
+$opt_V = 0;
+
+
+# parse args
+#
+if (!GetOptions(%optctl)) {
+    error(1, "invalid command line\nusage: $help");
+}
+if ($opt_h) {
+    print "$help\n";
+    exit(0);
+}
+if ($opt_V) {
+    print "$VERSION\n";
+    exit(0);
+}
 
 
 # process all lines
@@ -47,6 +98,7 @@ while (defined($line = <>)) {
 	++$tally{$char};
     }
 }
+
 
 # print tally
 #
